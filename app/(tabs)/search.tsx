@@ -10,6 +10,7 @@ import { fetchMovies } from "@/services/api";
 
 import MovieDisplayCard from "@/components/MovieCard";
 import SearchBar from "@/components/SearchBar";
+import { updateSearchCount } from "@/services/appwrite";
 import useFetch from "@/services/useFetch";
 
 const Search = () => {
@@ -34,9 +35,9 @@ const Search = () => {
         await loadMovies();
 
         // Call updateSearchCount only if there are results
-        // if (movies?.length! > 0 && movies?.[0]) {
-        //   await updateSearchCount(searchQuery, movies[0]);
-        // }
+        if (movies?.length! > 0 && movies?.[0]) {
+          await updateSearchCount(searchQuery, movies[0]);
+        }
       } else {
         reset();
       }
